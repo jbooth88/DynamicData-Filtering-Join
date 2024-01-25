@@ -1,0 +1,59 @@
+﻿<Window
+    x:Class="TestApp.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    
+    xmlns:local="clr-namespace:TestApp"
+    xmlns:rxui="clr-namespace:ReactiveUI;assembly=ReactiveUI"
+    
+    Height="450" Width="800"
+    >
+    
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="6">
+            <Button
+                Content="Get data"
+                Command="{Binding GetDataCommand, Mode=OneTime}"
+                Margin="6"
+                Padding="12,6"                
+                />
+            <Button
+                Content="Run test"
+                Command="{Binding RunTestCommand, Mode=OneTime}"
+                Margin="6"
+                Padding="12,6"
+                />
+
+            <ComboBox
+                x:Name="LabelNumberPickBox"
+                ItemsSource="{Binding LabelNumbers, Mode=OneTime}"
+                SelectedItem="{Binding SelectedLabelNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Margin="6"
+                Padding="12,6"
+                Width="192"
+                />
+
+            <Button
+                x:Name="ClearButton"
+                Content="Clear"
+                Margin="6"
+                Padding="12,6"
+                />
+
+        </StackPanel>
+
+        <DataGrid ItemsSource="{Binding Items, Mode=OneTime}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Entity.Id" Binding="{Binding Entity.Id, Mode=OneWay}" />
+                <DataGridTextColumn Header="Label.Id" Binding="{Binding Label.Id, Mode=OneWay}" />
+                <DataGridTextColumn Header="Entity.LabelNumber" Binding="{Binding Entity.LabelNumber, Mode=OneWay}" />
+                <DataGridTextColumn Header="Label.LabelNumber" Binding="{Binding Label.LabelNumber, Mode=OneWay}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+    </DockPanel>
+    
+</Window>
